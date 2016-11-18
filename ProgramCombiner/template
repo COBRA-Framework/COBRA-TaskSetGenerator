@@ -1,0 +1,11 @@
+[HEADER]
+int main(int argc, char *argv[]) 
+{
+	int i;
+[HEADER]
+[BODY]
+[BODY]
+[FOOTER]
+	return 0;
+}
+[FOOTER]
