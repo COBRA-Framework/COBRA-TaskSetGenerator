@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgeneraotr.ProgramCombiner;
+package be.uantwerpen.idlab.tasksetgenerator.ExecutableTaskGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

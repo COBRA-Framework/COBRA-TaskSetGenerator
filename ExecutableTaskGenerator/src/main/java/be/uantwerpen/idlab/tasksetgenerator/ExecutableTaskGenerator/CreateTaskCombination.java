@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgeneraotr.ProgramCombiner;
+package be.uantwerpen.idlab.tasksetgenerator.ExecutableTaskGenerator;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class CreateTaskComination {
+public class CreateTaskCombination {
 	
 	static final String NAME 	= "name";
 	static final String LOCATION 	= "tasksetlocation";
@@ -30,7 +30,7 @@ public class CreateTaskComination {
 	private Map<String, List<String>> paramsBenchmark;
 	private String header, footer, body;
 	
-	public CreateTaskComination(String inputParameters)
+	public CreateTaskCombination(String inputParameters)
 	{
 		checkInput(inputParameters);
 		header="";
@@ -334,11 +334,11 @@ public class CreateTaskComination {
 	}
 	public static void main(String[] args)
 	{
-		CreateTaskComination reader;
+		CreateTaskCombination reader;
 		if(args.length==1)
-			reader = new CreateTaskComination(args[0]);
+			reader = new CreateTaskCombination(args[0]);
 		else
-			reader = new CreateTaskComination("user.xml");
+			reader = new CreateTaskCombination("user.xml");
 		reader.readTemplate();
 		reader.scanTaskSet();
 	}

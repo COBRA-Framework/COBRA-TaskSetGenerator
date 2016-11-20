@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgeneraotr.ProgramCombiner;
+package be.uantwerpen.idlab.tasksetgenerator.taskCreator;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class XMLParser {
 			//e.printStackTrace();
 			System.err.println("Could not parse file");
 		} catch (IOException e){
-			System.err.println("File does not excist.");
+			System.err.println("File does not exist.");
 		}
 	}
 	public XMLParser(File inputFile) {
@@ -36,7 +36,7 @@ public class XMLParser {
 			System.err.println("Could not parse file");
 			//e.printStackTrace();
 		} catch (IOException e){
-			System.err.println("File does not excist.");
+			System.err.println("File does not exist.");
 		}
 		
 	}
@@ -65,36 +65,7 @@ public class XMLParser {
 		return true;
 	}
 	
-	public TaskSet parseTasks()
-	{
-		Node root = doc.getDocumentElement();
-		NodeList tasksetNodes = root.getChildNodes();
-		Task task;
-		Node taskline,program;
-		TaskSet taskset = null;
-		
-		taskset = new TaskSet(root.getAttributes().getNamedItem("name").getNodeValue(),Double.parseDouble(root.getAttributes().getNamedItem("load").getNodeValue()));
-		for(int i=0; i<tasksetNodes.getLength();i++)
-		{
-			taskline = tasksetNodes.item(i);
-			if(taskline.getNodeName().equals("task"))
-			{	
-				task = new Task();
-				task.setName(taskline.getAttributes().getNamedItem("name").getNodeValue());
-				NodeList programList = taskline.getChildNodes();
-				for(int k=0;k<programList.getLength();k++)
-				{
-					program = programList.item(k);
-					if(program.getNodeName().equals("program"))
-						task.addProgram(program.getAttributes().getNamedItem("name").getNodeValue(),Integer.parseInt(program.getAttributes().getNamedItem("n").getNodeValue()));
-				}
-				taskset.addTask(task);
-			}
-		}
-		return taskset;
-	}
-	
-	/*public List<TaskSet> parseTaskset()
+	public List<TaskSet> parseTaskset()
 	{
 		Node root = doc.getDocumentElement();
 		NodeList nodelist = root.getChildNodes();
@@ -128,7 +99,7 @@ public class XMLParser {
 		}
 		
 		return taskSetList;
-	}*/
+	}
 	public Map<String,List<String>> getParameters(String name)
 	{
 		Map<String,List<String>> parameters = new HashMap<String, List<String>>();
@@ -194,7 +165,7 @@ public class XMLParser {
 				else
 					atrName = a.getNodeValue();
 			}
-			parameters.put(atrName, values);			
+			parameters.put(atrName, values);
 		}
 		if(!parameters.containsKey("WCET"))
 			return null;

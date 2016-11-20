@@ -1,10 +1,12 @@
-package be.uantwerpen.idlab.tasksetgenerator.taskCreator;
+package be.uantwerpen.idlab.tasksetgenerator.synthetictaskgenerator;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import javax.xml.parsers.*;
 
 import org.w3c.dom.*;
@@ -25,7 +27,7 @@ public class XMLParser {
 			//e.printStackTrace();
 			System.err.println("Could not parse file");
 		} catch (IOException e){
-			System.err.println("File does not excist.");
+			System.err.println("File does not exist.");
 		}
 	}
 	public XMLParser(File inputFile) {
@@ -36,17 +38,24 @@ public class XMLParser {
 			System.err.println("Could not parse file");
 			//e.printStackTrace();
 		} catch (IOException e){
-			System.err.println("File does not excist.");
+			System.err.println("File does not exist.");
 		}
 		
 	}
-	public boolean parseFile()
-	{		
+	public boolean parseFile(){
+		
 		NodeList node = null;
 		
 		nodes = new ArrayList<Element>();
 		
 		doc.getDocumentElement().normalize();
+		
+		/*Node rootNode = doc.getDocumentElement();
+		System.out.println(rootNode.getNodeName());
+		NodeList listN = rootNode.getChildNodes();
+		Node n = listN.item(2);
+		System.out.println(n.getChildNodes().item(0).getNodeName());*/
+		
 		
 		node = doc.getElementsByTagName("taskSet");
 		if(node.getLength()==0 || node.getLength() > 1)
@@ -65,41 +74,6 @@ public class XMLParser {
 		return true;
 	}
 	
-	public List<TaskSet> parseTaskset()
-	{
-		Node root = doc.getDocumentElement();
-		NodeList nodelist = root.getChildNodes();
-		Task task;
-		Node taskline;
-		TaskSet taskset = null;
-		NodeList tasksetNodes;
-		List<TaskSet> taskSetList = new ArrayList<TaskSet>();
-		for(int j=0; j<nodelist.getLength();j++)
-		{
-			if(nodelist.item(j).getNodeName().equals("taskSet"))
-			{
-				tasksetNodes = nodelist.item(j).getChildNodes();	
-				taskset = new TaskSet(nodelist.item(j).getAttributes().getNamedItem("name").getNodeValue(),Double.parseDouble(nodelist.item(j).getAttributes().getNamedItem("load").getNodeValue()));
-				for(int i=0; i<tasksetNodes.getLength();i++)
-				{
-					taskline = tasksetNodes.item(i);
-					if(taskline.getNodeName().equals("task"))
-					{	
-						task = new Task();
-						task.setName(taskline.getAttributes().getNamedItem("name").getNodeValue());
-						task.setPeriod(Double.parseDouble(taskline.getAttributes().getNamedItem("p").getNodeValue()));
-						task.setDeadline(Double.parseDouble(taskline.getAttributes().getNamedItem("d").getNodeValue()));
-						task.setExe(Double.parseDouble(taskline.getAttributes().getNamedItem("e").getNodeValue()));
-						taskset.addTask(task);
-					}
-				}
-				taskSetList.add(taskset);
-			}
-			
-		}
-		
-		return taskSetList;
-	}
 	public Map<String,List<String>> getParameters(String name)
 	{
 		Map<String,List<String>> parameters = new HashMap<String, List<String>>();
@@ -124,54 +98,39 @@ public class XMLParser {
 						if(a.getNodeName()!="name")
 							values.add(a.getNodeValue());
 					}
+						
+							
 					parameters.put(ele.getAttribute("name"), values);
 				}
+						
 				return parameters;
 			}
 		}
 		System.err.println("Parameters not found");
 		return null;
 	}
-	public Map<String,List<String>> parseDesriptionFile(File file, String arch)
-	{
-		Map<String,List<String>> parameters = new HashMap<String, List<String>>();
-		ArrayList<String> values;
-		Element program = (Element)doc.getElementsByTagName("program").item(0);
+
+	public static void main(String[] args) {
+
+		Map<String, List<String>> param = new HashMap<String,  List<String>>();
+		XMLParser parser = new XMLParser(new File("user.xml"));
+		parser.parseFile();
 		
-		values = new ArrayList<String>();
-		values.add(program.getAttribute("name"));
-		parameters.put("name", values);
-		values = new ArrayList<String>();
-		values.add(program.getAttribute("path"));
-		parameters.put("path", values);
+		param = parser.getParameters("targetHardware");
+		for(Entry<String, List<String>> e:param.entrySet())
+			System.out.println(e.getKey() + ": "+e.getValue().get(0));
+		System.out.println();
 		
-		NodeList params = program.getElementsByTagName("parameter");
-	
-		Element ele;
-		String atrName ="";
-		NamedNodeMap map;
-		for(int i=0;i<params.getLength();i++)
-		{
-			ele = (Element) params.item(i);
-			map =  ele.getAttributes();
-			values = new ArrayList<String>();
-			if(ele.getAttribute("name").equals("WCET") && !ele.getAttribute("var0").equals(arch))
-				continue;
-			for(int j=0;j<map.getLength();j++)
-			{
-				Node a = map.item(j);
-				if(a.getNodeName()!="name")
-					values.add(a.getNodeValue());
-				else
-					atrName = a.getNodeValue();
-			}
-			parameters.put(atrName, values);
-		}
-		if(!parameters.containsKey("WCET"))
-			return null;
-		return parameters;
+		param = parser.getParameters("taskSet");
+		for(Entry<String, List<String>> e:param.entrySet())
+			System.out.println(e.getKey() + ": "+e.getValue().get(0));
+		System.out.println();
+		
+		param = parser.getParameters("benchmark");
+		for(Entry<String, List<String>> e:param.entrySet())
+			System.out.println(e.getKey() + ": "+e.getValue().get(0));
+		System.out.println();
 	}
-	
 	
 	public String getInputFilename() {
 		return inputFilename;

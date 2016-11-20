@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 
-
 public class TaskCreator {
 	
 	static final String ARCHITECTURE 	= "architecture";
