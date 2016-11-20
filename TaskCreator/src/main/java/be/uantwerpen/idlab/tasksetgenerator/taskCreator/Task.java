@@ -1,13 +1,11 @@
 package be.uantwerpen.idlab.tasksetgenerator.taskCreator;
 
-
 public class Task implements Comparable<Task>{
 	private double period;
 	private double exe;
 	private double deadline;
 	private String name;
-	
-	
+
 	public Task(String name, String period, String deadline, String exe){
 		
 		this.name = name;

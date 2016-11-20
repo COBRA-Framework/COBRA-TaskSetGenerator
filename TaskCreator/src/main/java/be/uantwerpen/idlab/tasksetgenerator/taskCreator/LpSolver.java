@@ -11,7 +11,6 @@ import org.gnu.glpk.SWIGTYPE_p_int;
 import org.gnu.glpk.glp_iocp;
 import org.gnu.glpk.glp_prob;
 
-
 public class LpSolver {
 	private List<WCET> programs;
 

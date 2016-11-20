@@ -53,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>be.uantwerpen.idlab.tasksetgenerator.ExecutableTaskGenerator.CreateTaskCombination</mainClass>
+                            <mainClass>be.uantwerpen.idlab.tasksetgenerator.taskCreator.TaskCreator</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>

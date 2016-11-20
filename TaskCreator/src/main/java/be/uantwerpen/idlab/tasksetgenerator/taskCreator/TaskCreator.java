@@ -70,7 +70,7 @@ public class TaskCreator {
 		tasksets  = parser2.parseTaskset();
 		
 		if(!desFolder.isDirectory())
-			System.err.println("No directory excist");
+			System.err.println("No directory exist");
 		
 		FilenameFilter filter = new FilenameFilter() {
 		        @Override
