@@ -22,9 +22,11 @@ public class XMLParser {
 		this.inputFilename = inputFilename;
 		try {
 			doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(inputFilename));
-		} catch (SAXException | ParserConfigurationException e) {
+		} catch (SAXException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
+			System.err.println("Could not parse file");
+		} catch (ParserConfigurationException e) {
 			System.err.println("Could not parse file");
 		} catch (IOException e){
 			System.err.println("File does not exist.");
@@ -34,9 +36,11 @@ public class XMLParser {
 		this.inputFilename = inputFile.getName();
 		try {
 			doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputFile);
-		} catch (SAXException | ParserConfigurationException e) {
+		} catch (SAXException e) {
 			System.err.println("Could not parse file");
 			//e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			System.err.println("Could not parse file");
 		} catch (IOException e){
 			System.err.println("File does not exist.");
 		}
