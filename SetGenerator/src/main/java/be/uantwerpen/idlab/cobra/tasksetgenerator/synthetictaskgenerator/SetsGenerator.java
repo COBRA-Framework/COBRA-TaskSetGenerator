@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgenerator.synthetictaskgenerator;
+package be.uantwerpen.idlab.cobra.tasksetgenerator.synthetictaskgenerator;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

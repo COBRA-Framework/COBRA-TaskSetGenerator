@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgenerator.taskCreator;
+package be.uantwerpen.idlab.cobra.tasksetgenerator.executabletaskgenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,5 +34,14 @@ public class TaskSet {
 	public void setTaskSetName(String taskSetName) {
 		this.taskSetName = taskSetName;
 	}
-	
+	public String toString()
+	{
+		String result = taskSetName + "\n";
+		for(Task t:tasks)
+			result+=t.toString()+"\n";
+		
+		return result;
+	}
 }
+	
+

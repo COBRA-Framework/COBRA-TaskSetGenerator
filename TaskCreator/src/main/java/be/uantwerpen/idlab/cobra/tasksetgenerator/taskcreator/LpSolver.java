@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgenerator.taskCreator;
+package be.uantwerpen.idlab.cobra.tasksetgenerator.taskcreator;
 
 import java.util.ArrayList;
 import java.util.List;

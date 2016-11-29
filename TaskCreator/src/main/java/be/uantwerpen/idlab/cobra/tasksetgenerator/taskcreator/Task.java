@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgenerator.taskCreator;
+package be.uantwerpen.idlab.cobra.tasksetgenerator.taskcreator;
 
 public class Task implements Comparable<Task>{
 	private double period;

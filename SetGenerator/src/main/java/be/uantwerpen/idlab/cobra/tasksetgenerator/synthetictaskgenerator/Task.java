@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgenerator.synthetictaskgenerator;
+package be.uantwerpen.idlab.cobra.tasksetgenerator.synthetictaskgenerator;
 
 
 public class Task implements Comparable<Task>{

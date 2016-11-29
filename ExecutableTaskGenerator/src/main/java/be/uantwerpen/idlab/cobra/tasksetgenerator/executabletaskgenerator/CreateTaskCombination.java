@@ -1,4 +1,4 @@
-package be.uantwerpen.idlab.tasksetgenerator.ExecutableTaskGenerator;
+package be.uantwerpen.idlab.cobra.tasksetgenerator.executabletaskgenerator;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
