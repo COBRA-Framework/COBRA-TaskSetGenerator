@@ -34,6 +34,8 @@
                             <mainClass>be.uantwerpen.idlab.cobra.tasksetgenerator.synthetictaskgenerator.SetsGenerator</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                     </archive>
                 </configuration>
