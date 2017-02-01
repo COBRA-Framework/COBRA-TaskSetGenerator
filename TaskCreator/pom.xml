@@ -6,7 +6,7 @@
 
     <groupId>be.uantwerpen.idlab.cobra</groupId>
     <artifactId>TaskCreator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${main-version}${build-version}</version>
     <packaging>${packaging}</packaging>
 
     <name>COBRA-TaskCreator</name>
@@ -19,6 +19,8 @@
         <finalName>${artifactId}-${version}</finalName>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <main-version>0.0.1</main-version>
+        <build-version></build-version>
     </properties>
 
     <repositories>

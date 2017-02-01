@@ -6,7 +6,7 @@
 
     <groupId>be.uantwerpen.idlab.cobra</groupId>
     <artifactId>ExecutableTaskGenerator</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${main-version}${build-version}</version>
     <packaging>${packaging}</packaging>
 
     <name>COBRA-ExecutableTaskGenerator</name>
@@ -16,10 +16,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
         <packaging>jar</packaging>
-        <version>0.0.1-SNAPSHOT</version>
         <finalName>${artifactId}-${version}</finalName>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
+        <main-version>0.0.1</main-version>
+        <build-version></build-version>
     </properties>
 
     <build>
